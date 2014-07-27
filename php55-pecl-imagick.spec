@@ -2,10 +2,11 @@
 %{!?__pecl:		%{expand:	%%global __pecl	%{_bindir}/pecl}}
 %{!?php_extdir:	%{expand:	%%global php_extdir	%(php-config --extension-dir)}}
 
+%global basepkg   php55w
 %define	peclName	imagick
 
 Summary:		Provides a wrapper to the ImageMagick library
-Name:		php-pecl-%peclName
+Name:		%{basepkg}-pecl-%peclName
 Version:		2.2.2
 Release:		4%{?dist}
 License:		PHP
@@ -14,8 +15,8 @@ Source0:		http://pecl.php.net/get/%peclName-%{version}.tgz
 Source1:		%peclName.ini
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
 URL:			http://pecl.php.net/package/%peclName
-BuildRequires:	php-pear >= 1.4.7
-BuildRequires: php-devel >= 5.1.3, ImageMagick-devel >= 6.2.4
+BuildRequires:	%{basepkg}-pear >= 1.4.7
+BuildRequires: %{basepkg}-devel >= 5.1.3, ImageMagick-devel >= 6.2.4
 Requires(post):	%{__pecl}
 Requires(postun):	%{__pecl}
 %if %{?php_zend_api}0
@@ -25,6 +26,7 @@ Requires:		php(api) = %{php_core_api}
 Requires:		php-api = %{php_apiver}
 %endif
 Provides:		php-pecl(%peclName) = %{version}
+Provides:               php-pecl-%{peclName} = %{version}
 
 %description
 %peclName is a native php extension to create and modify images using the
