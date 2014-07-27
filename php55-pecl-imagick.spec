@@ -79,9 +79,10 @@ popd
 install -m 0755 -d %{buildroot}%{pecl_xmldir}
 install -m 0664 package.xml %{buildroot}%{pecl_xmldir}/%{pecl_name}.xml
 install -d %{buildroot}%{php_inidir}
-install -m 0664 %{SOURCE1} %{php_inidir}/%{pecl_name}.ini
+install -m 0664 %{SOURCE1} %{buildroot}%{php_inidir}/%{pecl_name}.ini
 %if %{with_zts}
-install -m 0664 %{SOURCE1} %{php_ztsinidir}/%{pecl_name}.ini
+install -d %{buildroot}%{php_ztsinidir}
+install -m 0664 %{SOURCE1} %{buildroot}%{php_ztsinidir}/%{pecl_name}.ini
 %endif
 
 %clean
