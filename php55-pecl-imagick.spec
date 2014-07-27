@@ -38,6 +38,16 @@ This extension requires ImageMagick version 6.2.4+ and PHP 5.1.3+.
 
 IMPORTANT: Version 2.x API is not compatible with earlier versions.
 
+%package devel
+Summary:       Imagick developer files (header)
+Group:         Development/Libraries
+Requires:      %{name} = %{version}-%{release}
+Requires:      %{basepkg}-devel
+Provides:      php-pecl-imagick-devel = %{version}-%{release}
+
+%description devel
+These are the files needed to compile programs using Imagick.
+
 %prep
 %setup -qc
 
@@ -112,9 +122,16 @@ fi
 %config(noreplace) %{php_ztsinidir}/%{pecl_name}.ini
 %endif
 
+%files devel
+%{php_incldir}/ext/%{pecl_name}
+%if %{with_zts}
+%{php_ztsincldir}/ext/%{pecl_name}
+%endif
+
 %changelog
 * Sun Jul 27 2014 Andy Thompson <andy@webtatic.com> - 3.1.2-1
 - Import spec from EPEL 6 php-pecl-imagick-2.2.2-4
 - Update to have php55w prefix
 - Add ZTS compilation support
 - Update to 3.1.2
+- Add devel package to contain the header files
