@@ -10,8 +10,8 @@
 
 Summary:		Provides a wrapper to the ImageMagick library
 Name:		%{basepkg}-pecl-%{pecl_name}
-Version:		2.2.2
-Release:		4%{?dist}
+Version:		3.1.2
+Release:		1%{?dist}
 License:		PHP
 Group:		Development/Libraries
 Source0:		http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
@@ -112,7 +112,8 @@ fi
 %endif
 
 %changelog
-* Sun Jul 27 2014 Andy Thompson <andy@webtatic.com> - 2.2.2-1
+* Sun Jul 27 2014 Andy Thompson <andy@webtatic.com> - 3.1.2-1
 - Import spec from EPEL 6 php-pecl-imagick-2.2.2-4
 - Update to have php55w prefix
 - Add ZTS compilation support
+- Update to 3.1.2
