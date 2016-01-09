@@ -5,7 +5,7 @@
 # Build ZTS extension or only NTS
 %global with_zts      1
 
-%global basepkg   php55w
+%global basepkg   %{?basepkg}%{!?basepkg:php}
 %define	pecl_name	imagick
 
 Summary:		Provides a wrapper to the ImageMagick library
