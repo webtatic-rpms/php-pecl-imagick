@@ -113,7 +113,7 @@ fi
 
 %files
 %defattr(-,root,root,-)
-%doc %{pecl_name}-%{version}%{?rcver}/examples %{pecl_name}-%{version}%{?rcver}/{CREDITS,TODO,INSTALL}
+%doc %{pecl_name}-%{version}%{?rcver}/examples %{pecl_name}-%{version}%{?rcver}/CREDITS
 %{php_extdir}/%{pecl_name}.so
 %{pecl_xmldir}/%{pecl_name}.xml
 %config(noreplace) %{php_inidir}/%{pecl_name}.ini
