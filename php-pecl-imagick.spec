@@ -7,19 +7,20 @@
 
 %global basepkg   %{?basepkg}%{!?basepkg:php}
 %define	pecl_name	imagick
+%global rcver RC4
 
 Summary:		Provides a wrapper to the ImageMagick library
 Name:		%{basepkg}-pecl-%{pecl_name}
-Version:		3.1.2
-Release:		2%{?dist}
+Version:		3.4.0
+Release:		0.1%{?rcver:.%{rcver}}%{?dist}
 License:		PHP
 Group:		Development/Libraries
-Source0:		http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
+Source0:		http://pecl.php.net/get/%{pecl_name}-%{version}%{?rcver}.tgz
 Source1:		%{pecl_name}.ini
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot:	%{_tmppath}/%{name}-%{version}%{?rcver}-root-%(%{__id_u} -n)
 URL:			http://pecl.php.net/package/%{pecl_name}
 BuildRequires:	%{basepkg}-pear >= 1.4.7
-BuildRequires: %{basepkg}-devel >= 5.1.3, ImageMagick-devel >= 6.2.4
+BuildRequires: %{basepkg}-devel >= 5.4.0, ImageMagick-devel >= 6.5.3
 Requires(post):	%{__pecl}
 Requires(postun):	%{__pecl}
 %if %{?php_zend_api}0
@@ -34,7 +35,7 @@ Provides:               php-pecl-%{pecl_name} = %{version}
 %description
 %{pecl_name} is a native php extension to create and modify images using the
 ImageMagick API.
-This extension requires ImageMagick version 6.2.4+ and PHP 5.1.3+.
+This extension requires ImageMagick version 6.5.3+ and PHP 5.4.0+.
 
 IMPORTANT: Version 2.x API is not compatible with earlier versions.
 
@@ -49,21 +50,21 @@ Provides:      php-pecl-imagick-devel = %{version}-%{release}
 These are the files needed to compile programs using Imagick.
 
 %prep
-%setup -qc
+%setup -qc -n %{pecl_name}-%{version}%{?rcver}
 
 %if %{with_zts}
-cp -r %{pecl_name}-%{version} %{pecl_name}-%{version}-zts
+cp -r %{pecl_name}-%{version}%{?rcver} %{pecl_name}-%{version}%{?rcver}-zts
 %endif
 
 %build
-pushd %{pecl_name}-%{version}
+pushd %{pecl_name}-%{version}%{?rcver}
 phpize
 %configure --with-%{pecl_name} --with-php-config=%{_bindir}/php-config
 %{__make} %{?_smp_mflags}
 popd
 
 %if %{with_zts}
-pushd %{pecl_name}-%{version}-zts
+pushd %{pecl_name}-%{version}%{?rcver}-zts
 zts-phpize
 %configure --with-%{pecl_name} --with-php-config=%{_bindir}/zts-php-config
 %{__make} %{?_smp_mflags}
@@ -73,13 +74,13 @@ popd
 %install
 rm -rf %{buildroot}
 
-pushd %{pecl_name}-%{version}
+pushd %{pecl_name}-%{version}%{?rcver}
 %{__make} install \
 	INSTALL_ROOT=%{buildroot}
 popd
 
 %if %{with_zts}
-pushd %{pecl_name}-%{version}-zts
+pushd %{pecl_name}-%{version}%{?rcver}-zts
 %{__make} install \
 	INSTALL_ROOT=%{buildroot}
 popd
@@ -112,7 +113,7 @@ fi
 
 %files
 %defattr(-,root,root,-)
-%doc %{pecl_name}-%{version}/examples %{pecl_name}-%{version}/{CREDITS,TODO,INSTALL}
+%doc %{pecl_name}-%{version}%{?rcver}/examples %{pecl_name}-%{version}%{?rcver}/{CREDITS,TODO,INSTALL}
 %{php_extdir}/%{pecl_name}.so
 %{pecl_xmldir}/%{pecl_name}.xml
 %config(noreplace) %{php_inidir}/%{pecl_name}.ini
@@ -129,6 +130,9 @@ fi
 %endif
 
 %changelog
+* Sun Jan 10 2016 Andy Thompson <andy@webtatic.com> - 3.4.0-0.1.RC4
+- Update to 3.4.0RC4
+
 * Mon Aug 03 2015 Andy Thompson <andy@webtatic.com> - 3.1.2-2
 - Rebuild for RHEL 6.7
 
