@@ -29,9 +29,3 @@ builds:
       - php55w
       - php56w
       - php70w
-  webtatic-el5:
-    target: el5-development
-    arch: [x86_64, i386]
-    profiles:
-      - php54w
-      - php55w
