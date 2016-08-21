@@ -12,6 +12,9 @@ profiles:
   php70w:
     define:
       basepkg: php70w
+  php71w:
+    define:
+      basepkg: php71w
 builds:
   webtatic-el7:
     target: el7-development
@@ -21,6 +24,7 @@ builds:
       - php55w
       - php56w
       - php70w
+      - php71w
   webtatic-el6:
     target: el6-development
     arch: [x86_64, i386]
@@ -29,3 +33,4 @@ builds:
       - php55w
       - php56w
       - php70w
+      - php71w
