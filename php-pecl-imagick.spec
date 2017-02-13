@@ -10,8 +10,8 @@
 
 Summary:		Provides a wrapper to the ImageMagick library
 Name:		%{basepkg}-pecl-%{pecl_name}
-Version:		3.4.2
-Release:		0.1%{?rcver:.%{rcver}}%{?dist}
+Version:		3.4.3
+Release:		1%{?rcver:.%{rcver}}%{?dist}
 License:		PHP
 Group:		Development/Libraries
 Source0:		http://pecl.php.net/get/%{pecl_name}-%{version}%{?rcver}.tgz
@@ -129,6 +129,9 @@ fi
 %endif
 
 %changelog
+* Mon Feb 13 2017 Andy Thompson <andy@webtatic.com> - 3.4.3-1
+- Update to 3.4.3
+
 * Mon May 02 2016 Andy Thompson <andy@webtatic.com> - 3.4.2-1
 - Update to 3.4.2
 
