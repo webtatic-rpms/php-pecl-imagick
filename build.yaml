@@ -1,11 +1,5 @@
 name: php-pecl-imagick
 profiles:
-  php54w:
-    define:
-      basepkg: php54w
-  php55w:
-    define:
-      basepkg: php55w
   php56w:
     define:
       basepkg: php56w
@@ -20,8 +14,6 @@ builds:
     target: el7-development
     arch: [x86_64]
     profiles:
-      - php54w
-      - php55w
       - php56w
       - php70w
       - php71w
@@ -29,8 +21,6 @@ builds:
     target: el6-development
     arch: [x86_64, i386]
     profiles:
-      - php54w
-      - php55w
       - php56w
       - php70w
       - php71w
