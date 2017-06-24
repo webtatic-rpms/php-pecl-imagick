@@ -11,7 +11,7 @@
 Summary:		Provides a wrapper to the ImageMagick library
 Name:		%{basepkg}-pecl-%{pecl_name}
 Version:		3.4.3
-Release:		1%{?rcver:.%{rcver}}%{?dist}
+Release:		1.1%{?rcver:.%{rcver}}%{?dist}
 License:		PHP
 Group:		Development/Libraries
 Source0:		http://pecl.php.net/get/%{pecl_name}-%{version}%{?rcver}.tgz
@@ -129,6 +129,9 @@ fi
 %endif
 
 %changelog
+* Sat Jun 24 2017 Andy Thompson <andy@webtatic.com> - 3.4.3-1.1
+- Rebuild for php-7.2.0alpha2 Zend ABI version change
+
 * Mon Feb 13 2017 Andy Thompson <andy@webtatic.com> - 3.4.3-1
 - Update to 3.4.3
 
